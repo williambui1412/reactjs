@@ -25,7 +25,7 @@ class DetailPage extends PureComponent {
 		try {
 			const { match } = this.props;
 			const itemProduct = await productApi.getById(match.params.postid);
-			//console.log(itemProduct);
+			console.log(itemProduct);
             this.setState({ detailProduct: itemProduct });
             this.setState({ imageProduct: itemProduct.images.slice(0, 3) });
             this.setState({ imageProductThumb: itemProduct.images[0] });

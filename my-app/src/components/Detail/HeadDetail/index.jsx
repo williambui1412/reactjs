@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { addCart } from '../../../actions/cart';
+import { connect } from 'react-redux';
 
 class HeadDetail extends PureComponent {
 
@@ -23,6 +26,9 @@ class HeadDetail extends PureComponent {
             onDecrease(currentQuantity);
         }
     }
+    handlAddCart = (itemProduct, currentQuantity) => {
+		this.props.addCart(itemProduct, currentQuantity);
+	}
     
 
     render() {
@@ -104,7 +110,7 @@ class HeadDetail extends PureComponent {
                                     <span id="quantity_value">{currentQuantity}</span>
                                     <span className="plus" onClick={ () =>{this.handleIncrease(currentQuantity)}}><i className="fa fa-plus" aria-hidden="true"></i></span>
                                 </div>
-                                <div className="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                                <div className="red_button add_to_cart_button"><span onClick={() => this.handlAddCart(detailProduct, currentQuantity)}>add to cart</span></div>
                                 <div className="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
                             </div>
                         </div>
@@ -132,5 +138,16 @@ HeadDetail.defaultProps = {
     currentQuantity: '',
     onIncrease: null,
     onDecrease: null,
+};
+
+const mapStareToProp = state => ({
+	//cartList: state.cart.list
+})
+
+const mapDispatchToProp = dispatch => {
+	return bindActionCreators({
+		addCart: addCart,
+	}, dispatch)
 }
-export default HeadDetail;
+
+export default connect(mapStareToProp, mapDispatchToProp)(HeadDetail);

@@ -14,7 +14,7 @@ class ProductCat extends PureComponent {
     
     render() {
         const { ItemCat } = this.props;
-        //console.log(cartList);
+        console.log(ItemCat.length);
 
         const numberFormat = (value) =>
         new Intl.NumberFormat('vi-VN', {
@@ -24,7 +24,8 @@ class ProductCat extends PureComponent {
         
         return (
             <div className="product-grid" >
-
+                
+                { ItemCat.length <= 0 ? <h4>Không có kết quả phù hợp</h4> : "" }
                 {
                     ItemCat.map(ItemCat =>(
                         <div key={ItemCat.id} className="product-item men">

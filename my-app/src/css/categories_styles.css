@@ -1181,21 +1181,22 @@ section
 	font-size: 18px;
 	margin-bottom: 21px;
 }
-.sidebar_categories li.active a
+.sidebar_categories li.active a ,.sidebar_categories li.active span
 {
 	color: #fe4c50;
 }
-.sidebar_categories li.active:hover a
+.sidebar_categories li.active:hover a, .sidebar_categories li.active:hover span
 {
 	color: #fe4c50;
 }
-.sidebar_categories li a
+.sidebar_categories li a, .sidebar_categories li span
 {
 	font-size: 14px;
 	line-height: 40px;
 	color: #51545f;
+	cursor: pointer;
 }
-.sidebar_categories li a:hover
+.sidebar_categories li a:hover,.sidebar_categories li span:hover
 {
 	color: #b5aec4;
 }
@@ -1312,7 +1313,7 @@ section
 .product-grid
 {
 	width: 100%;
-	margin-top: 57px;
+	margin-top: 30px;
 }
 .product-item
 {

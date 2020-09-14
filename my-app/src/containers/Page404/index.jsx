@@ -3,9 +3,12 @@ import React, { PureComponent } from 'react';
 class Page404 extends PureComponent {
     render() {
         return (
-            <h2>
-                Page not found
-            </h2>
+            <>
+                <br />
+                <h2 className="text-center">
+                    Page not found
+                </h2>
+            </>
         );
     }
 }

@@ -36,6 +36,7 @@ const request = async (url, options = {}) => {
 // Get single or plural
 const get = async (url, params) => {
   const paramsString = params ? `?${queryString.stringify(params)}` : '';
+  console.log('param' ,paramsString);
   const requestUrl = `${url}${paramsString}`;
   console.log(requestUrl);
   return request(requestUrl, { method: 'GET' });

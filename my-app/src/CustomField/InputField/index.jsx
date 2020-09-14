@@ -14,20 +14,23 @@ class InputField extends PureComponent {
                 {label && <Label for={name} >{label}</Label> }
                 
                 <Input 
-                    id={name}
-                    name={name}
-                     
-                    {...field}
+                id={name}
+                name={name}
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                    
+                //{...field}
 
 
-                    invalid={showError}
-                    type={type}
-                    disabled={disabled}
-                    placeholder={placeholder} />
-                    {/* { showError && <p>{errors[name]}</p>} */}
-                    {/* { showError && <FormFeedback>{errors[name]}</FormFeedback>} */}
-                    <ErrorMessage name={name} component={FormFeedback} />
-                </FormGroup>
+                invalid={showError}
+                type={type}
+                disabled={disabled}
+                placeholder={placeholder} />
+                {/* { showError && <p>{errors[name]}</p>} */}
+                {/* { showError && <FormFeedback>{errors[name]}</FormFeedback>} */}
+                <ErrorMessage name={name} component={FormFeedback} />
+            </FormGroup>
         );
     }
 }

@@ -61,6 +61,9 @@ body
 	color: #1e1e27;
 	padding-top: 150px;
 }
+img{
+	max-width: 100%;
+}
 div
 {
 	display: block;
@@ -1178,6 +1181,7 @@ section
 {
 	font-size: 12px;
 	font-weight: 600;
+	cursor: pointer;
 }
 .product-item:hover .add_to_cart_button
 {
@@ -1899,7 +1903,7 @@ section
 .btn-pay{
 	display: block;
     margin-top: 8px;
-    width: 240px;
+    width: 100%;
     color: rgb(255, 255, 255);
     font-size: 14px;
     font-weight: 400;

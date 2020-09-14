@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 class MenuNewArrival extends PureComponent {
-	constructor(props){
-		super(props);
-		this.state = {
-			ItemMenus: [],
-		}
-	}
+	// constructor(props){
+	// 	super(props);
+	// 	this.state = {
+	// 		ItemMenus: [],
+	// 	}
+	// }
 
 
 	handleMenuArrival = (ItemMenu) =>{
@@ -22,7 +22,7 @@ class MenuNewArrival extends PureComponent {
 
 		const { activeMenuArrival , ItemMenus } = this.props;
 
-		//console.log(activeMenuArrival);
+		console.log(ItemMenus);
 
         return (
             <div className="row align-items-center">

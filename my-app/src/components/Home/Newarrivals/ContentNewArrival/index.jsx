@@ -18,7 +18,7 @@ class ContentNewArrival extends PureComponent {
     render() {
 
         const { ListProducts ,cartList, status } = this.props;
-        console.log(status);
+        console.log('list item' , ListProducts);
 
         const numberFormat = (value) =>
         new Intl.NumberFormat('vi-VN', {
@@ -41,7 +41,7 @@ class ContentNewArrival extends PureComponent {
                                             <div className="favorite favorite_left"></div>
                                             { ListProduct.promotionPercent > 0 && <div className="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-{ListProduct.promotionPercent}%</span></div>  }
                                             <div className="product_info">
-                                                <h6 className="product_name"><Link to={`/detail/${ListProduct.id}`}>{ListProduct.name}</Link></h6>
+                                                <h6 className="product_name"><Link to="/detail/123">Product Name</Link></h6>
                                             <div className="product_price">{ numberFormat(ListProduct.salePrice) }{ ListProduct.salePrice !== ListProduct.originalPrice && <span>{ numberFormat(ListProduct.originalPrice) }</span> }</div>
                                             </div>
                                         </div>
@@ -59,6 +59,8 @@ class ContentNewArrival extends PureComponent {
 
 ContentNewArrival.propTypes = {
     ListProducts: PropTypes.array.isRequired,
+    addCart: PropTypes.func.isRequired,
+    onStatus: PropTypes.func.isRequired,
 };
 
 const mapStareToProp = state => ({

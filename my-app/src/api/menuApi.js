@@ -12,6 +12,7 @@ class PostApi {
    */
   getAll(params = { _page: AppConstants.DEFAULT_PAGE, _limit: AppConstants.DEFAULT_LIMIT }) {
     const url = `${AppConstants.API_URL}/${this.resourceName}`;
+    console.log("url menu item",url);
     return fetchClient.get(url, params);
   }
 

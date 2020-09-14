@@ -14,7 +14,7 @@ class HomePage extends PureComponent {
                 <Banner />
                 <NewArrival />
                 <DealOfTheWeek
-                    timeTillDate="18 07 2020, 6:00 am"
+                    timeTillDate="03 09 2020, 16:00 pm"
                     timeFormat="DD MM YYYY, h:mm a"
                 />
                 <Benefit />

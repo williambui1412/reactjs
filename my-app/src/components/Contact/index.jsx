@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Formik, Form, FastField } from 'formik';
 import { FormGroup, Label, Input, Button } from 'reactstrap';
 import InputField from '../../CustomField/InputField';
-
 import * as Yup from 'yup'; // for everything
+
 class FormContact extends PureComponent {
     render() {
 
@@ -15,14 +15,11 @@ class FormContact extends PureComponent {
             Message: '',
         }
 
-        const phoneRegEx = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/; 
-
         const validationSchema = Yup.object().shape({
             Name: Yup.string().required('Name field is required'),
-            Email: Yup.string().email("Invalid email").required('Email field is required'),
+            //Email: Yup.string().email("Invalid email").required('Email field is required'),
             Phone_number: Yup.number().typeError('Invalid phone number').required('Phone number field is required'),
             Message: Yup.string().required('Message field is required'),
-
         })
 
         const handleFormSubmit = (values, formikBag) => {
@@ -40,7 +37,7 @@ class FormContact extends PureComponent {
                 {
                     formikProps =>{
                         const { values , errors, touched} = formikProps;
-                        console.log({values , errors, touched});
+                        //console.log({values , errors, touched});
                         return(
                             <Form>
                                 <FastField

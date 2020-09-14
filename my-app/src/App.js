@@ -1,17 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import './App.scss';
+import Footer from './components/Common/Footer';
 import Header from './components/Common/Header';
+import BlogPage from './containers/BlogPage';
+import Cart from './containers/Cart';
+import Category from './containers/CatPage';
+import ContactPage from './containers/ContactPage';
+import DetailBlog from './containers/DetailBlog';
+import DetailPage from './containers/DetailPage';
 import HomePage from './containers/HomePage';
 import Page404 from './containers/Page404';
-import Footer from './components/Common/Footer';
-import { BrowserRouter, Switch, Route, Router } from 'react-router-dom';
-import Category from './containers/CatPage';
-import DetailPage from './containers/DetailPage';
-import Cart from './containers/Cart';
-import ContactPage from './containers/ContactPage';
-import BlogPage from './containers/BlogPage';
-import './App.scss';
+import ReduxThunk from './containers/Redux-thunk';
 
 function App() {
   return (
@@ -25,6 +25,8 @@ function App() {
           <Route path="/contact" component={ContactPage} />
           <Route path="/cart" component={Cart} />
           <Route path="/blogs" component={BlogPage} />
+          <Route path="/redux-thunk" component={ReduxThunk} />
+          <Route path="/blog/:postid" component={DetailBlog} />
           <Route component={Page404} />
         </Switch>
         <Footer/>

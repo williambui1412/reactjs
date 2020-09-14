@@ -27,6 +27,7 @@ class NewArrival extends PureComponent {
         // get menu
 		try{
             const ItemMenu = await menuApi.getAll(); 
+            //console.log(ItemMenu);
 			this.setState({ ItemMenus: ItemMenu.data });
 		} catch (error){
 			console.log('Failed to fetch data:' , error); 
@@ -36,6 +37,7 @@ class NewArrival extends PureComponent {
         try{
             const {paramProductHome} = this.state;
             const ListProduct = await productApi.getAll(paramProductHome);
+            //console.log(ListProduct);
             this.setState({ ListProducts : ListProduct.data });
            
 		} catch (error){
@@ -44,13 +46,16 @@ class NewArrival extends PureComponent {
     }
     
     handleMenuArrival = async (ItemMenu) =>{
+        console.log('item click',ItemMenu);
         this.setState({loading: true});
         try {
 			this.setState(async prevState => {
 				const newParamProductHome = {
 					...prevState.paramProductHome,
 					categoryId: ItemMenu.id,
-				};
+                };
+                
+                //console.log('new param', newParamProductHome);
 				
 				const itemProduct = await productApi.getAll(newParamProductHome);
 				this.setState({ ListProducts: itemProduct.data });
@@ -83,6 +88,7 @@ class NewArrival extends PureComponent {
                     activeMenuArrival={activeMenuArrival} 
                     ItemMenus={ItemMenus} 
                     onActiveMenu={ this.handleMenuArrival } />
+
                     { loading ? <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> : <ContentNewArrival ListProducts={ListProducts} /> }
                 </div>
             </div>

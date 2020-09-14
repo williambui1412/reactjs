@@ -17,13 +17,13 @@ class Category extends PureComponent {
             loading: false,
             paramProduct: {
 				_page: 1,
-				_limit: 16,
-				_order: 'asc',
+				_limit: 16, 
             },
             defaultSort: [
 				{ id: 1, value: "Default Sorting", _order: 'asc', sort: "0" },
-				{ id: 2, value: "Price", _order: 'asc', sort: "salePrice" },
-				{ id: 3, value: "Product Name", _order: 'asc', sort: "name" }
+				{ id: 2, value: "Price(↑)", _order: 'asc', sort: "salePrice" },
+                { id: 3, value: "Product Name(↑)", _order: 'asc', sort: "name" },
+                { id: 4, value: "Price giam3", _order: 'desc', sort: "salePrice" },
             ],
             pagination: {},
             valueDefaultSort: 'Default Sorting',
@@ -31,9 +31,11 @@ class Category extends PureComponent {
 				{ id: 1, value: 4 },
 				{ id: 2, value: 8 },
 				{ id: 3, value: 12 },
-				{ id: 4, value: 16 }
+                { id: 4, value: 16 },
+                { id: 5, value: 2 },
             ],
-            sliderValues: [10000, 100000],
+            sliderValues: [10000, 100000],  
+            activeCat: '',
         }
     }
 
@@ -65,7 +67,7 @@ class Category extends PureComponent {
     }
 
     handleSortChange = async (defaultSort) => {
-        console.log(defaultSort);
+        //console.log(defaultSort);
         this.setState({loading: true});
         if (defaultSort.id === 1) {
             try {
@@ -75,7 +77,7 @@ class Category extends PureComponent {
                     };
                     delete newParamProduct._sort;
                     delete newParamProduct._order;
-                    console.log(newParamProduct);
+                    //console.log(newParamProduct);
                     const itemProduct = await productApi.getAll(newParamProduct);
                     this.setState({ ItemCat: itemProduct.data });
                     this.setState({ paramProduct: newParamProduct });
@@ -122,8 +124,9 @@ class Category extends PureComponent {
 					...prevState.paramProduct,
 					_limit: numberItemDisplay.value, 
 				};
-				//console.log(newparamProduct);
-				const ItemCats = await productApi.getAll(newparamProduct);
+				
+                const ItemCats = await productApi.getAll(newparamProduct);
+                //console.log(ItemCats);
                 this.setState({ ItemCat: ItemCats.data });
                 this.setState({ paramProduct: newparamProduct }); 
                 this.setState({ pagination : ItemCats.pagination });
@@ -136,7 +139,7 @@ class Category extends PureComponent {
     }
 
     handlePageChange = async (newpage) =>{
-        console.log(newpage);
+        //console.log(newpage);
         this.setState({loading: true});
         try {
 			this.setState(async prevState => {
@@ -159,7 +162,7 @@ class Category extends PureComponent {
     }
 
     handleChange = (sliderValues) => {
-        console.log(sliderValues);
+        //console.log(sliderValues);
         this.setState({loading: true});
 		try {
 			this.setState(async prevState => {
@@ -174,26 +177,83 @@ class Category extends PureComponent {
 				this.setState({ ItemCat: itemProduct.data });
 				this.setState({ paramProduct: newParamProduct });
                 this.setState({ pagination: itemProduct.pagination });
+                this.setState({ sliderValues: [sliderValues[0], sliderValues[1]] });
                 this.setState({ loading: false});
 			})
 		} catch (error) {
             console.log('Failed to fetch products: ', error.message);
             this.setState({loading: false});
 		}
-	}
+    }
+    
+    handleFilterCat = (ItemMenus) =>{
+
+        this.setState({loading: true});
+        
+        try {
+			this.setState(async prevState => {
+				const newparamProduct = {
+					...prevState.paramProduct,
+					categoryId: ItemMenus.id, 
+				};
+				
+                const ItemCats = await productApi.getAll(newparamProduct);
+                //console.log(ItemCats);
+                this.setState({ ItemCat: ItemCats.data });
+                this.setState({ paramProduct: newparamProduct }); 
+                this.setState({ pagination : ItemCats.pagination });
+                this.setState({ activeCat : ItemMenus.id });
+                this.setState({ loading: false });
+			})
+		} catch (error) {
+            console.log('Failed to fetch products: ', error.message);
+            this.setState({loading: false});
+		}
+    }
+
+    handleRemoveFilter = () =>{
+        
+        this.setState({loading: true});
+        
+        try {
+			this.setState(async prevState => {
+				const newparamProduct = {
+                    _page: 1,
+                    _limit: 16,
+                    _order: 'asc', 
+                };
+				
+                const ItemCats = await productApi.getAll(newparamProduct);
+                //console.log(ItemCats);
+                this.setState({ ItemCat: ItemCats.data });
+                this.setState({ paramProduct: newparamProduct }); 
+                this.setState({ pagination : ItemCats.pagination });
+                this.setState({ activeCat : '' });
+                
+                this.setState({ valueDefaultSort: 'Default Sorting' });
+                this.setState({ loading: false });
+			})
+		} catch (error) {
+            console.log('Failed to fetch products: ', error.message);
+            this.setState({loading: false});
+		}
+    }
 
     render() {
-        const{ItemCat, loading, defaultSort, valueDefaultSort, numberItemDisplay, pagination, ItemMenus} = this.state;
-        //console.log(ItemCat);
+        const {ItemCat, loading, defaultSort, valueDefaultSort, numberItemDisplay, pagination, ItemMenus, activeCat} = this.state;
+        //console.log(ItemCat.length);
         return (
             <div className="container product_section_container">
                 <div className="row">
                     <div className="col product_section clearfix">
                         <Breadcrumb />
                         <Sidebar 
-                   
-                        ItemMenus={ItemMenus}
-                        onChangeSLider={this.handleChange}
+                            activeCat={activeCat}
+                            ItemMenus={ItemMenus}
+                            onChangeSLider={this.handleChange}
+                            onChangeCat={this.handleFilterCat}
+                            onRemoveFilter={this.handleRemoveFilter}
+                            //sliderValues={sliderValues}
                         />
                         <div className="main_content">
                             <div className="products_iso">

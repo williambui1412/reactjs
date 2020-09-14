@@ -48,9 +48,10 @@ class Cart extends PureComponent {
                 <div className="container">
                     <h2 className="ttl-cart">Giỏ Hàng <span>({counter})</span></h2>
                     <div className="row">
-                        <div className="col-md-9">
+                        <div className="col-md-8">
                             {
                                 cartList.map(cartList =>(
+                                
                                     <div className="row" key={cartList.product.id}>
                                         <div className="col-md-2 images">
                                             <img src={cartList.product.images[0]} alt=""/>
@@ -74,11 +75,12 @@ class Cart extends PureComponent {
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 ))
                             }
                             
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-md-4">
                             <table style={{width: '100%'}}>
                                 <tbody>
                                     <tr>
@@ -112,6 +114,9 @@ class Cart extends PureComponent {
 
 Cart.propTypes = {
     cartList: PropTypes.array.isRequired,
+    IncreaseCart: PropTypes.func.isRequired,
+    DecreaseCart: PropTypes.func.isRequired,
+    RemoveItemCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProp = state => ({

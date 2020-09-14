@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Footer extends PureComponent {
     render() {
@@ -11,7 +12,8 @@ class Footer extends PureComponent {
                             <div className="col-lg-6">
                                 <div className="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
                                     <ul className="footer_nav">
-                                        <li><a href="https://nordiccoder.com/blog" target="blank">blog</a></li>
+                              
+                                        <li><Link to="blogs">blog</Link></li>
                                         <li><a href="#">FAQs</a></li>
                                         <li><a href="contact.html">Contact us</a></li>
                                     </ul>

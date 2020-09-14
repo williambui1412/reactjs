@@ -5,8 +5,6 @@ const initialStatus ={
 const statusReducer = ( state = initialStatus , action) => {
     switch (action.type) {
         case 'ON_STATUS' : {
-
-            console.log('asdasd');
             return {
                 ...state,
                 popup: 1,

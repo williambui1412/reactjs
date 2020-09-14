@@ -106,7 +106,7 @@ const cartReducer = (state = initialCart, action) => {
             const newcarttotal =  state.cartTotal - (action.payload.quantity * action.payload.product.salePrice)
 
             //console.log(action.payload.product.salePrice);
-            console.log(newcarttotal); 
+            //console.log(newcarttotal); 
             return{
                 ...state,
                 list: productIndex,

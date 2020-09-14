@@ -19,7 +19,7 @@ class Header extends PureComponent {
 		for (const cart of cartList) {
 			counter = counter + cart.quantity;
         }
-        console.log(status);
+        //console.log(status);
         
 
         return (
@@ -82,7 +82,7 @@ class Header extends PureComponent {
                                                 <NavLink className="nav__link" to="/categories">shop</NavLink>
                                             </li>
                                             <li><a href="#">promotion</a></li>
-                                            <li><NavLink className="nav__link" to="/blogs">blog</NavLink></li>
+                                            <li><NavLink className="nav__link" to="/redux-thunk">Redux Thunk</NavLink></li>
                                             <li><NavLink className="nav__link" to="/contact">contact</NavLink></li>
                                         </ul>
                                         <ul className="navbar_user">
@@ -113,7 +113,7 @@ class Header extends PureComponent {
 }
 
 Header.propTypes = {
-
+    offStatus: PropTypes.func.isRequired,
 };
 
 

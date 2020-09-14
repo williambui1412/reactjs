@@ -26,6 +26,7 @@ class DealOfTheWeek extends PureComponent {
 			const seconds = countdown.format('ss');
 
 			this.setState({ days, hours, minutes, seconds });
+			//console.log("count time"); 
 		}, 1000);
 	}
 	componentWillUnmount() {
